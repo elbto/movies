@@ -5,13 +5,12 @@ export default class MovieList extends Component {
   render() {
     return (
       <div className="w-75 d-flex flex-row flex-wrap align-content-start">
-        <MovieElement />
-        <MovieElement />
-        <MovieElement />
-        <MovieElement />
-        <MovieElement />
-        <MovieElement />
-        <MovieElement />
+        {this.props.movies.map((movie, index) => (
+          <MovieElement
+            movie={movie}
+            updateSelectedMovie={this.props.updateSelectedMovie}
+          />
+        ))}
       </div>
     );
   }

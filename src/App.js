@@ -8,14 +8,14 @@ class App extends Component {
       movies: [
         {
           title: "The Godfather",
-          img: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY209_CR0,0,140,209_AL_.jpg",
+          img: "https://m.media-amazon.com/images/I/51RTC05Z38L._AC_SY445_.jpg",
           details: "R | 175min | Crime, Drama",
           description:
             "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
         },
         {
           title: "Apocalypse Now",
-          img: "https://resize-media.festival-cannes.com/fit-in/2560x1103/film_film/0002/12/fd2b9ccba8e15fab4c531e20f528436d004e8ad8.jpeg",
+          img: "https://m.media-amazon.com/images/I/411Bw4v3HAL._AC_SY445_.jpg",
           details: "R | 147min | Drama, War",
           description:
             "During the Vietnam War, Captain Willard is sent on a dangerous mission into Cambodia to assassinate a renegade colonel who has set himself up as a god among a local tribe.",
@@ -39,12 +39,20 @@ class App extends Component {
     };
   }
 
+  updateSelectedMovie = (title) => {
+    const index = this.state.movies.findIndex((movie) => movie.title === title);
+    this.setState({ selectedMovie: index });
+  };
+
   render() {
     return (
       <div className="App d-flex flex-column">
         <Header />
         <div className="d-flex flex-row flex-fill pt-4 p-2">
-          <MovieList />
+          <MovieList
+            movies={this.state.movies}
+            updateSelectedMovie={this.updateSelectedMovie}
+          />
           <MovieDetails movie={this.state.movies[this.state.selectedMovie]} />
         </div>
       </div>
